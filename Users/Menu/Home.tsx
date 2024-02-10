@@ -1,10 +1,6 @@
-import { View, Text, Image, StyleSheet, Modal } from "react-native";
+import { View, Text, Image, StyleSheet, Modal, ScrollView, FlatList, SafeAreaView, TouchableOpacity } from "react-native";
 import React, { useState, useEffect } from "react";
-import { SafeAreaView ,  FlatList,
-  ScrollView,
-  TouchableOpacity} from "react-native-safe-area-context";
-
-import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
+import FontAwesome5 from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { deletePost, fetchAllPosts } from "../../Redux/Posts/Post";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,11 +48,11 @@ const Home = () => {
   };
 
   const dispatch = useDispatch();
-  const posts = useSelector((state) => state.post.posts);
-  const isLoadingPosts = useSelector((state) => state.post.isLoadingPosts);
+  const posts = useSelector((state: any) => state.post.posts);
+  const isLoadingPosts = useSelector((state: any) => state.post.isLoadingPosts);
   const [userProfiles, setUserProfile] = useState("");
   const [postData, setPosts] = useState([]);
-  const { isLoading, userProfile } = useSelector((state) => state.user);
+  const { isLoading, userProfile } = useSelector((state: any) => state.user);
 
   useEffect(() => {
     if (isLoading === true) {
