@@ -22,7 +22,7 @@ const CreatePost = () => {
   const [res, setRes] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setLoading] = useState(false);
-  const [userProfiles, setUserProfile] = useState("");
+  const [userProfile, setUserProfile] = useState("");
 
 
 
@@ -34,34 +34,20 @@ const CreatePost = () => {
 
 
 
-  const { loading, userProfile } = useSelector((state) => state.post);
+  const { loading } = useSelector((state) => state.post);
   console.log(userProfile);
 
-    useEffect(() => {
-        if (isLoading === true) {
-            dispatch(fetchUserProfile())
-                .then((response) => {
-                    // console.log("dispatched");
-                    console.log(response?.payload);
-                    setUserProfile(response?.payload);
-                })
-                .catch((error) => {
-                    //  console.log(error);
-                });
-        }
-    }, [dispatch]);
-
   useEffect(() => {
-    if (loading === true) {
-      dispatch(fetchAllPosts())
-        .then((response) => {
-          console.log(response?.payload?.data?.post_details, "postslt");
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [dispatch]);
+        dispatch(fetchUserProfile())
+            .then((response) => {
+                // console.log("dispatched");
+                console.log(response?.payload);
+                setUserProfile(response?.payload);
+            })
+            .catch((error) => {
+                //  console.log(error);
+            });
+  }, []);
 
   const fetchingAllPost = () => {
     dispatch(fetchAllPosts())
@@ -180,12 +166,12 @@ const CreatePost = () => {
           />
           <View>
             <Text style={{ fontSize: 16, fontFamily: "Bold", color: "black" }}>
-                👋 {""}Hello,
+                👋 {""}Hello,{userProfile.first_name}
             </Text>
             <Text
               style={{ fontSize: 14, fontFamily: "Regular", color: "gray" }}
             >
-              @ibeneme_ikenna
+              @{userProfile.email}
             </Text>
           </View>
         </View>
