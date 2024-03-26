@@ -12,6 +12,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { createPost, fetchAllPosts } from "../../Redux/Posts/Post";
 import { useDispatch, useSelector } from "react-redux";
+import {fetchUserProfile} from "../../Redux/Users/User";
 
 const CreatePost = () => {
   const navigation = useNavigation();
@@ -21,9 +22,11 @@ const CreatePost = () => {
   const [res, setRes] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [userProfiles, setUserProfile] = useState("");
 
 
-  const handleTextChange = (text) => {
+
+    const handleTextChange = (text) => {
     setInputValue(text);
     setCharCount(text.length);
     console.log(text);
@@ -32,6 +35,21 @@ const CreatePost = () => {
 
 
   const { loading, userProfile } = useSelector((state) => state.post);
+  console.log(userProfile);
+
+    useEffect(() => {
+        if (isLoading === true) {
+            dispatch(fetchUserProfile())
+                .then((response) => {
+                    // console.log("dispatched");
+                    console.log(response?.payload);
+                    setUserProfile(response?.payload);
+                })
+                .catch((error) => {
+                    //  console.log(error);
+                });
+        }
+    }, [dispatch]);
 
   useEffect(() => {
     if (loading === true) {
@@ -100,9 +118,9 @@ const CreatePost = () => {
         backgroundColor: "#f4f4f4",
         flex: 1,
         flexGrow: 1,
-        paddingLeft: 16,
-        paddingRight: 16,
-        paddingTop: 16,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingTop: 50,
         paddingBottom: 24,
         height: "100%",
         marginBottom: -96,
@@ -113,7 +131,7 @@ const CreatePost = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           backgroundColor: "white",
-          margin: 16,
+          margin: 0,
           padding: 16,
           height: 60,
           borderRadius: 8,
@@ -141,13 +159,15 @@ const CreatePost = () => {
           </Text>
         </TouchableOpacity>
       </View>
+
+
       <View
         style={{
           flexDirection: "column",
           backgroundColor: "white",
-          margin: 16,
+          marginTop: 10,
           padding: 16,
-          flex: 1,
+          flex: 0.6,
           borderRadius: 8,
         }}
       >
@@ -160,7 +180,7 @@ const CreatePost = () => {
           />
           <View>
             <Text style={{ fontSize: 16, fontFamily: "Bold", color: "black" }}>
-              Ibeneme Ikenna
+                👋 {""}Hello,
             </Text>
             <Text
               style={{ fontSize: 14, fontFamily: "Regular", color: "gray" }}

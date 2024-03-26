@@ -48,7 +48,7 @@ const Home = () => {
         setModalVisible(false);
     };
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<any>();
     const posts = useSelector((state:any) => state.post.posts);
     const isLoadingPosts = useSelector((state:any) => state.post.isLoadingPosts);
     const [userProfiles, setUserProfile] = useState("");
@@ -192,9 +192,8 @@ const Home = () => {
             </View>
 
 
-                <View>
+                <View style={{ paddingBottom: 100 }}>
                     <FlatList
-                        style={{ paddingBottom: 100 }}
                         contentContainerStyle={{ paddingBottom: 100 }}
                         data={posts?.data?.slice()?.reverse()}
                         keyExtractor={(item, index) => index.toString()}
@@ -300,7 +299,7 @@ const Home = () => {
                                                     name="share"
                                                     onPress={handleEllipsisPress}
                                                     size={18}
-                                                    color="white"
+                                                    color="black"
                                                     width={16}
                                                 />
                                                 <Text style={styles.ellipsis}>Share Post</Text>
@@ -310,7 +309,7 @@ const Home = () => {
                                                     name="bookmark"
                                                     onPress={handleEllipsisPress}
                                                     size={18}
-                                                    color="white"
+                                                    color="black"
                                                     width={16}
                                                 />
                                                 <Text style={styles.ellipsis}>Bookmark Post</Text>
@@ -322,7 +321,7 @@ const Home = () => {
                                                 <FontAwesome5
                                                     name="ban"
                                                     size={18}
-                                                    color="white"
+                                                    color="black"
                                                     width={16}
                                                 />
                                                 <Text style={styles.ellipsis}>Delete</Text>
@@ -373,7 +372,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         position: "absolute",
         width: "100%",
-        backgroundColor: "#515FDF",
+        backgroundColor: "white",
         borderRadius: 21,
         padding: 16,
         gap: 24,
@@ -387,7 +386,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     ellipsis: {
-        color: "white",
+        color: "black",
         fontFamily: "Regular",
         fontSize: 16,
         textAlign: "left",
