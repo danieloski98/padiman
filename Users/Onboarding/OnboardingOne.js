@@ -25,7 +25,7 @@ export default function OnboardingTwo() {
     >
       <View style={styles.container}>
         {/* <Image source={logoImage} style={styles.logo} /> */}
-        <Text style={styles.text}>Padiman Route....</Text>
+        <Text style={styles.text}>Padiman Route</Text>
         <Text style={[styles.textsmall]}>Travel and Parcel Smart</Text>
       </View>
       <View style={styles.containerButton}>
@@ -84,7 +84,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#18CC3F",
     width: "100%",
     height: 55,
-    borderRadius: 4,
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

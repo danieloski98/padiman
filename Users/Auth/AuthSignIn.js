@@ -10,7 +10,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import { Feather } from '@expo/vector-icons'
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../Redux/Auth/Auth";
 
@@ -187,8 +187,8 @@ const AuthSignIn = () => {
                   style={styles.passwordVisibilityIcon}
                   onPress={togglePasswordVisibility}
                 >
-                  <Icon
-                    name={showPassword ? "eye-slash" : "eye"}
+                  <Feather
+                    name={showPassword ? "eye-off" : "eye"}
                     size={20}
                     color={`${"#000000"}`}
                   />
@@ -287,8 +287,7 @@ const styles = StyleSheet.create({
     bottom: "10%",
     right: 0,
     padding: 10,
-    color: "#000000",
-    fontFamily: "Regular",
+
   },
   containerfirst: {
     color: "#ffffff",
