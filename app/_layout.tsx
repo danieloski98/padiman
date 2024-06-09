@@ -1,24 +1,35 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import {ThemeProvider} from '@shopify/restyle';
 import 'react-native-reanimated';
+import theme from "@/theme";
+import { ToastProvider } from "react-native-toast-notifications";
+import {QueryClient, QueryClientProvider} from "react-query";
 
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+SplashScreen.preventAutoHideAsync().then();
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    GeoramaBold: require('../assets/fonts/Genos-Bold.ttf'),
+    GeoramaRegular: require('../assets/fonts/Georama-Regular.ttf'),
+    GeoramaSemiBold: require('../assets/fonts/Genos-SemiBold.ttf'),
+    GeoramaMedium: require('../assets/fonts/Georama-Medium.ttf'),
+    GenosBold: require('../assets/fonts/Genos-Bold.ttf'),
+    GenosMedium: require('../assets/fonts/Genos-Medium.ttf'),
+    GenosLight: require('../assets/fonts/Genos-Light.ttf'),
+    GenoRegular: require('../assets/fonts/Genos-Regular.ttf'),
   });
+
+  const queryClient = new QueryClient();
 
   useEffect(() => {
     if (loaded) {
-      SplashScreen.hideAsync();
+      SplashScreen.hideAsync().then();
     }
   }, [loaded]);
 
@@ -27,11 +38,24 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+    <ThemeProvider theme={theme}>
+     <ToastProvider
+         placement="top"
+         style={{
+           marginTop: 60,
+         }}
+         duration={5000}
+         animationType="slide-in"
+         textStyle={{ fontFamily: "RedRegular", fontSize: 16 }}
+         swipeEnabled
+         successColor={theme.colors.primaryColor}
+         dangerColor="red"
+         warningColor="grey"
+     >
+       <QueryClientProvider client={queryClient}>
+         <Stack screenOptions={{ headerShown: false }} />
+       </QueryClientProvider>
+     </ToastProvider>
     </ThemeProvider>
   );
 }

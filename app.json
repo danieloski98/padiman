@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "padiman-route",
+    "name": "padiman route",
     "slug": "padiman-route",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -19,7 +19,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.padiman_route"
     },
     "web": {
       "bundler": "metro",
@@ -27,10 +28,20 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "0ef6d785-2747-427e-9476-2c4a0a071d3d"
+      }
+    },
+    "owner": "dandolla98"
   }
 }
