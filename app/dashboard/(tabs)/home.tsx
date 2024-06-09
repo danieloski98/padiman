@@ -10,6 +10,9 @@ export default function HomePage() {
         <LayoutWithHeader>
             <Box flex={1} marginTop={'m'}>
                 <FlatList
+                    contentContainerStyle={{
+                        paddingBottom: 100
+                    }}
                     data={items}
                     keyExtractor={(item, index) => index.toString()}
                     renderItem={({ item }) => <PostCard />}

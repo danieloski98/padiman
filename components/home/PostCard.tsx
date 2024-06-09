@@ -7,7 +7,7 @@ import {useState} from "react";
 const text = 'lorem efioefb efweiofwioefiowef wefiweifiweof wefoiwefiowefiowef wefoiwefiwef efowefiwef wefoiwefwojff weofiweiof fweofweofihoeif wefoiwefiohwef weofiweof wefoifoweif wefowefiohweio weifioefwef';
 
 export default function PostCard() {
-    const [showMore, setShowMore] = useState(true);
+    const [showMore, setShowMore] = useState(false);
     return (
         <Box width={'100%'} borderWidth={0.4} borderColor={'borderColor'} backgroundColor={'white'} borderRadius={10} paddingBottom={'m'} marginBottom={'m'}>
             {/*HEADER*/}
