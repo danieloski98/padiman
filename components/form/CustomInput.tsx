@@ -40,7 +40,7 @@ export const CustomTextInput = (props: IProps & TextInputProps) => {
             {props.showLabel ||
                 (props.showLabel === undefined && (
                     <Box flexDirection="row">
-                        <CustomText variant="xs" fontFamily="RedRegular" marginBottom="s">
+                        <CustomText variant="xs" fontSize={14} fontFamily={'GeoramaRegular'} marginBottom="s">
                             {props.label || props.placeholder}
                         </CustomText>
                         {props.required && (
@@ -121,7 +121,7 @@ export const CustomTextInput = (props: IProps & TextInputProps) => {
                 }}
             />
             {errors[props.name] && (
-                <CustomText variant="xs" style={{ color: "red" }}>
+                <CustomText variant="xs" fontSize={14} fontFamily={'GeoramaRegular'} style={{ color: "red" }}>
                     {errors[props.name]?.message as any}
                 </CustomText>
             )}

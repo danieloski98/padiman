@@ -7,6 +7,9 @@ import 'react-native-reanimated';
 import theme from "@/theme";
 import { ToastProvider } from "react-native-toast-notifications";
 import {QueryClient, QueryClientProvider} from "react-query";
+import { StatusBar } from 'react-native';
+import {Colors} from "@/constants/Colors";
+import {GestureHandlerRootView} from "react-native-gesture-handler";
 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -15,9 +18,9 @@ SplashScreen.preventAutoHideAsync().then();
 export default function RootLayout() {
   const [loaded] = useFonts({
     SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-    GeoramaBold: require('../assets/fonts/Genos-Bold.ttf'),
+    GeoramaBold: require('../assets/fonts/Georama-Bold.ttf'),
     GeoramaRegular: require('../assets/fonts/Georama-Regular.ttf'),
-    GeoramaSemiBold: require('../assets/fonts/Genos-SemiBold.ttf'),
+    GeoramaSemiBold: require('../assets/fonts/Georama-Medium.ttf'),
     GeoramaMedium: require('../assets/fonts/Georama-Medium.ttf'),
     GenosBold: require('../assets/fonts/Genos-Bold.ttf'),
     GenosMedium: require('../assets/fonts/Genos-Medium.ttf'),
@@ -53,7 +56,10 @@ export default function RootLayout() {
          warningColor="grey"
      >
        <QueryClientProvider client={queryClient}>
-         <Stack screenOptions={{ headerShown: false }} />
+         <GestureHandlerRootView style={{ flex: 1 }}>
+           <StatusBar backgroundColor={Colors.light.primaryColor} translucent={false} animated={true} barStyle={'light-content'} showHideTransition={"slide"} />
+           <Stack screenOptions={{ headerShown: false }} />
+         </GestureHandlerRootView>
        </QueryClientProvider>
      </ToastProvider>
     </ThemeProvider>
