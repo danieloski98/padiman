@@ -5,13 +5,17 @@ import useCustomToast from "@/hooks/useCustomToast";
 import * as SecureStorage from "expo-secure-store";
 import {useState, useEffect} from "react";
 import useGetProfileQuery from "@/hooks/queries/useGetProfileQuery";
+import {useRouter} from "expo-router";
+import {useUserDetails} from "@/states/user";
 
 
 export default function loginController() {
     const [enabled, setEnabled] = useState<boolean>(false);
     const { isError, isLoading, data, mutate, error } = useLoginMutation();
+    const { setAll } = useUserDetails((state) => state);
     const getProfileQuery = useGetProfileQuery({isEnabled:enabled});
     const toast = useCustomToast();
+    const router = useRouter();
 
     // form
     const { renderForm } = useForm({
@@ -27,8 +31,8 @@ export default function loginController() {
             toast.show('Login Successful', { type: 'success'});
             SecureStorage.setItem('token', dat?.data?.tokens?.access);
             SecureStorage.setItem('refresh', dat?.data?.tokens?.refresh);
-            console.log(dat.data);
-            getProfileQuery.refetch().then()
+            setAll({ isLoggedIn: true });
+            router.replace('/dashboard');
         }).catch((err) => {
             //toast.show(JSON.stringify(err), { type: 'error'});
         })
@@ -38,5 +42,6 @@ export default function loginController() {
         renderForm,
         submit,
         isLoading,
+        router,
     }
 }
