@@ -10,6 +10,7 @@ import {QueryClient, QueryClientProvider} from "react-query";
 import { StatusBar } from 'react-native';
 import {Colors} from "@/constants/Colors";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
+import { ThemeProvider as RnThemeProvider } from '@rneui/themed'
 
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -58,7 +59,9 @@ export default function RootLayout() {
        <QueryClientProvider client={queryClient}>
          <GestureHandlerRootView style={{ flex: 1 }}>
            <StatusBar backgroundColor={Colors.light.primaryColor} translucent={false} animated={true} barStyle={'light-content'} showHideTransition={"slide"} />
-           <Stack screenOptions={{ headerShown: false }} />
+           <RnThemeProvider>
+             <Stack screenOptions={{ headerShown: false }} />
+           </RnThemeProvider>
          </GestureHandlerRootView>
        </QueryClientProvider>
      </ToastProvider>

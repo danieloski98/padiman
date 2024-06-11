@@ -5,18 +5,14 @@ import URLS from "@/hooks/urls";
 import {useUserDetails} from "@/states/user";
 import {usePathname } from "expo-router";
 
-export default function useGetProfileQuery({ isEnabled }: { isEnabled: boolean }) {
+export default function useGetProfileQuery() {
     const { setAll, isLoggedIn } = useUserDetails((state) => state);
     const pathName  = usePathname();
     const  name = pathName.split("/")[1]
-    return useQuery([Keys.getProfileDetails], () => httpService.get(URLS.getProfile), {
-        enabled: isLoggedIn && name !== undefined && name === 'auth',
+    return useQuery([Keys.getProfileDetails, isLoggedIn], () => httpService.get(URLS.getProfile), {
+        enabled: isLoggedIn,
         onSuccess: (data) => {
-            if (!isLoggedIn || name && name === 'auth') {
-                setAll({ ...data?.data, isLoggedIn: true });
-            } else {
-                setAll({ ...data?.data });
-            }
+            setAll({ ...data?.data });
         },
         onError: (error: any) => {
             alert(JSON.stringify(error));

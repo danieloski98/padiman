@@ -2,7 +2,7 @@ export type IPost = {
     name: string;
     post_details: {
         id: number;
-        image: string;
+        images: string;
         post: string;
         timestamp: string;
     }

@@ -11,6 +11,10 @@ const URLS = {
     logout: '/account/logout/',
     verifyToken: '/account/verify-token/',
     refreshToken: '/account/token-refresh/',
+    getAllPosts: '/post/list-all-post/',
+
+    // users profile
+    getNotifications: '/user_profile/notification/get',
 }
 
 export default URLS;
