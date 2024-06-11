@@ -13,7 +13,6 @@ export default function loginController() {
     const [enabled, setEnabled] = useState<boolean>(false);
     const { isError, isLoading, data, mutate, error } = useLoginMutation();
     const { setAll } = useUserDetails((state) => state);
-    const getProfileQuery = useGetProfileQuery({isEnabled:enabled});
     const toast = useCustomToast();
     const router = useRouter();
 
