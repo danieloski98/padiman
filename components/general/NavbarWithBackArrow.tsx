@@ -5,17 +5,23 @@ import {Theme} from "@/theme";
 import {useRouter} from "expo-router";
 import {useCallback} from "react";
 
-export default function NavbarWithBackArrow() {
+export default function NavbarWithBackArrow({onPress}: {
+    onPress?: () => void;
+}) {
     const theme = useTheme<Theme>();
     const router = useRouter();
 
     const handlePress = useCallback(() => {
-        if (router.canGoBack()) {
-            router.back()
+        if (onPress) {
+            onPress();
         } else {
-            return;
+            if (router.canGoBack()) {
+                router.back()
+            } else {
+                return;
+            }
         }
-    }, [])
+    }, [onPress])
     return (
         <Box width={'100%'} height={83} justifyContent={'center'}>
             <Box width={32} height={32} borderRadius={30} style={{ backgroundColor: '#515FDF0D' }} alignItems={'center'} justifyContent={'center'}>

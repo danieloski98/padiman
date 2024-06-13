@@ -36,6 +36,7 @@
     "expo-system-ui": "~3.0.6",
     "expo-web-browser": "~13.0.3",
     "iconsax-react-native": "^0.0.8",
+    "lucide-react-native": "^0.394.0",
     "moment": "^2.30.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

@@ -1,10 +1,24 @@
 import Box from "@/components/general/Box";
 import CustomText from "@/components/general/CustomText";
+import LayoutWithHeader from "@/components/general/LayoutWithHeader";
+import {Messages, MessageText1, Profile2User, Setting2} from "iconsax-react-native";
+import MoreCard from "@/components/more/MoreCard";
+
+const items = [
+    {icon: <Profile2User color={'black'}  variant={'Bold'} size={25}  />, title: 'Profile'},
+    {icon: <MessageText1 color={'black'}  variant={'Bold'} size={25}  />, title: 'Messages'},
+    {icon: <Setting2 color={'black'} variant={'Bold'} size={25}  />, title: 'Settings'},
+    {icon: <Messages color={'black'} variant={'Bold'} size={25} />, title: 'Contact Us'},
+]
 
 export default function MorePage() {
     return (
-        <Box flex={1}>
-            <CustomText>More</CustomText>
-        </Box>
+        <LayoutWithHeader showNotification={false} pageTitle={'More'}>
+            <Box flex={1}>
+                {items.map((item, index) => (
+                    <MoreCard {...item} />
+                ))}
+            </Box>
+        </LayoutWithHeader>
     )
 }

@@ -16,7 +16,7 @@ const BANKS: Array<{ label: string, value: string }> = [
     { label: "Opay", value: "Opay" }
 ]
 
-export default function Withdraw() {
+export default function SendParcel() {
     const [amount, setAmount] = useState<string>('');
     const [bank, setBank] = useState<string>('');
 
