@@ -8,7 +8,7 @@ const items = [
     {icon: <Profile2User color={'black'}  variant={'Bold'} size={25}  />, title: 'Profile'},
     {icon: <MessageText1 color={'black'}  variant={'Bold'} size={25}  />, title: 'Messages'},
     {icon: <Setting2 color={'black'} variant={'Bold'} size={25}  />, title: 'Settings'},
-    {icon: <Messages color={'black'} variant={'Bold'} size={25} />, title: 'Contact Us'},
+    {icon: <Messages color={'black'} variant={'Bold'} size={25} />, title: 'Contact Us', url: 'ContactUs'},
 ]
 
 export default function MorePage() {
