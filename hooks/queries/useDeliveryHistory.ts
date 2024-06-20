@@ -1,0 +1,16 @@
+import { useQuery } from "react-query";
+import { Keys } from "@/hooks/queries/keys";
+import httpService from "@/services/httpService";
+import URLS from "@/hooks/urls";
+import { useUserDetails } from "@/states/user";
+
+export default function useGetDeliveriesHistory() {
+  const { isLoggedIn } = useUserDetails((state) => state);
+  return useQuery(
+    [Keys.getDeliveryHistory, isLoggedIn],
+    () => httpService.get(URLS.getDeliveryHistory),
+    {
+      enabled: isLoggedIn,
+    },
+  );
+}
