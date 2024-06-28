@@ -1,4 +1,4 @@
-package com.padiman_route
+package com.padimanroute
 
 import android.app.Application
 import android.content.res.Configuration
